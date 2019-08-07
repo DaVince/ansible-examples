@@ -10,7 +10,7 @@ do
         "Example 1")
             echo "Starting example 1."
             cd example1
-            ansible-playbook -vvv -c local site.yml
+            ansible-playbook -v -c local site.yml
             bash
             break
             ;;
