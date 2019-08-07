@@ -1,0 +1,6 @@
+---
+base_path: "/var/www/html"
+log_dir: "/var/log/apache2/"
+
+app_name: "My Application"
+app_dir: "myapp"

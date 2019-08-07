@@ -1,0 +1,10 @@
+---
+# Let's define multiple plays.
+
+# First play, meant for the web servers.
+- hosts: servers
+  # TODO
+
+# This is another play, meant to be executed by the database servers.
+- hosts: databases
+  # TODO

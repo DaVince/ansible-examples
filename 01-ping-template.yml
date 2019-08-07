@@ -1,0 +1,11 @@
+---
+# This playbook pings the host and copies a file to the remote location.
+- hosts: localhost
+  tasks:
+  - name: do a pingo to the localhost
+    ping:
+      data: hello
+  - name: copy template.txt to remote as hello.txt
+    template:
+      src: template.txt
+      dest: hello.txt

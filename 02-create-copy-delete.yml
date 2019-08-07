@@ -1,0 +1,21 @@
+---
+# Create a folder, copy a local file, then delete them.
+- hosts: localhost
+  tasks:
+  - name: Create a directory named 'server'
+    file:
+      state: directory
+      path: server
+
+  - name: Copy template.txt into the server directory
+    copy:
+      src: template.txt
+      dest: server/template.txt
+
+  - name: Wait a few seconds
+    wait_for: timeout=3
+
+  - name: Delete the directory and its contents
+    file:
+      state: absent
+      path: "server"

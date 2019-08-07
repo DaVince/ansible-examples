@@ -1,0 +1,26 @@
+---
+- hosts: all
+  gather_facts: yes
+  remote_user: root
+
+  pre_tasks:
+  - name: Include app-related variables
+    include_vars: vars/myapp.yml
+
+  tasks:
+  - name: Install Apache webserver
+    apt:
+      name: apache2
+      state: latest
+      update_cache: yes
+
+  - name: Copy website files to webserver
+    copy:
+      src: 'files/'
+      dest: '{{ base_path }}/{{ app_dir }}' # Translates into /var/www/myapp
+
+  - name: Start Apache webserver
+
+  - name: Verify Apache has started
+
+  - name: Test whether the webpage can be accessed
