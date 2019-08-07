@@ -1,6 +1,7 @@
 ---
-base_path: "/var/www/html"
+base_path: "/var/www"
 log_dir: "/var/log/apache2/"
 
 app_name: "My Application"
 app_dir: "myapp"
+app_port_number: 8081

@@ -8,19 +8,37 @@
     include_vars: vars/myapp.yml
 
   tasks:
-  - name: Install Apache webserver
+  - name: Install/update Apache webserver
     apt:
       name: apache2
       state: latest
       update_cache: yes
+  
+  - name: Stop Apache if running
+    service:
+      name: apache2
+      state: stopped
+      enabled: yes
 
   - name: Copy website files to webserver
     copy:
-      src: 'files/'
+      src: 'files/website/'
       dest: '{{ base_path }}/{{ app_dir }}' # Translates into /var/www/myapp
 
-  - name: Start Apache webserver
+  - name: Copy and fill in VirtualHost template
+    template:
+      src: 'files/conf/virtualhost.conf'
+      dest: '/etc/apache2/sites-available/{{ app_dir }}.conf'
 
-  - name: Verify Apache has started
+  - name: Activate the new Virtual Host in Apache
+    shell: 'a2ensite {{ app_dir }}.conf' # Run a freeform command
+    args:
+      chdir: /etc/apache2/sites-available/ # Change into this dir beforehand
 
-  - name: Test whether the webpage can be accessed
+  - name: Restart Apache
+    service:
+      name: apache2
+      state: started
+      enabled: yes
+
+  # - name: Test whether the webpage can be accessed
