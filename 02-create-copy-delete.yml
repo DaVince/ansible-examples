@@ -1,6 +1,6 @@
 ---
 # Create a folder, copy a local file, then delete them.
-- hosts: localhost
+- hosts: all
   tasks:
   - name: Create a directory named 'server'
     file:
@@ -9,7 +9,7 @@
 
   - name: Copy template.txt into the server directory
     copy:
-      src: template.txt
+      src: examplefile.txt
       dest: server/template.txt
 
   - name: Wait a few seconds
