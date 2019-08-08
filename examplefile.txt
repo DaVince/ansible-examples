@@ -1,1 +1,1 @@
-I have template content.
+I have example content.
